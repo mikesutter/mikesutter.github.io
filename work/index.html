@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
-    <link rel="canonical" href="/">
+    <link rel="canonical" href="/work/">
     <link rel="icon" type="image/png" href="favicon.png">
     <title>
       Home - Mike Sutter
@@ -57,8 +57,8 @@
               
               <li>
                 <a id="HeaderDrawer-Home" href="/"
-                  class="menu-drawer__menu-item list-menu__item link link--text focus-inset menu-drawer__menu-item--active"
-                   aria-current="page" >
+                  class="menu-drawer__menu-item list-menu__item link link--text focus-inset"
+                  >
                   Home
                 </a></li>
               <li>
@@ -96,8 +96,8 @@
                         
                         <li>
                           <a id="HeaderDrawer-Work-All Work" href="/work/"
-                            class="menu-drawer__menu-item link link--text list-menu__item focus-inset"
-                            >
+                            class="menu-drawer__menu-item link link--text list-menu__item focus-inset menu-drawer__menu-item--active"
+                             aria-current="page" >
                             All Work
                           </a>
                         </li>
@@ -149,9 +149,8 @@
     
     <li>
       <a id="HeaderMenu-Home" href="/"
-        class="header__menu-item list-menu__item link link--text focus-inset" 
-        aria-current="page" >
-        <span  class="header__active-menu-item" >
+        class="header__menu-item list-menu__item link link--text focus-inset" >
+        <span >
           Home
         </span>
       </a></li>
@@ -160,7 +159,7 @@
       <header-menu>
         <details id="Details-HeaderMenu-Work">
           <summary id="HeaderMenu-Work" class="header__menu-item list-menu__item link focus-inset">
-            <span >
+            <span  class="header__active-menu-item" >
               Work
             </span>
             <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
@@ -176,8 +175,8 @@
             
             <li>
               <a id="HeaderMenu-All Work" href="/work/"
-                class="header__menu-item list-menu__item link link--text focus-inset caption-large"
-                >
+                class="header__menu-item list-menu__item link link--text focus-inset caption-large list-menu__item--active"
+                 aria-current="page" >
                 All Work
               </a>
             </li>
@@ -332,6 +331,10 @@
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       
       <div class="page-width page-width--narrow">
+        
+        <h1 class="main-page-title page-title h0">
+          Home
+        </h1>
         
         <div class="rte">
           Welcome to the site.
