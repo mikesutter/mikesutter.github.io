@@ -1,0 +1,30 @@
+.project-story {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax( 340px, 1fr));
+  grid-gap: 2rem;
+  margin: 2em 0;
+}
+
+.story-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  grid-gap: 15px;
+}
+
+.story-item .title {
+  font-size: 1rem;
+  margin: 0;
+  text-align: right;
+}
+
+.story-item .text-body {
+  
+}
+
+@media screen and (min-width: 990px) {
+
+  .project-story {
+    grid-template-columns: repeat(auto-fit, minmax( 420px, 1fr));
+  }
+
+}
