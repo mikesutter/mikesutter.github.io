@@ -245,7 +245,7 @@ details[open]:hover > .header__menu-item {
 
 .homepage-blocks {
   display: grid;
-  grid-template-columns: minmax(420px, 1fr);
+  grid-template-columns: minmax(326px, 1fr);
   grid-gap: 2em;
   margin-top: 2em;
 }
