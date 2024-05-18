@@ -248,10 +248,11 @@ details[open]:hover > .header__menu-item {
   grid-template-columns: minmax(326px, 1fr);
   grid-gap: 2em;
   margin-top: 2em;
+  margin-bottom: 2rem;
 }
 
 .project-feature {
-  margin-bottom: 3em;
+  margin-bottom: 1rem;
 }
 
 .project-feature img {
