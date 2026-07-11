@@ -1,0 +1,57 @@
+/* ==========================================================================
+   Studio subsite styles — mikesutter.com v2.0
+   Reuses the 1.0 design tokens (Arboria, base.css custom properties).
+   ========================================================================== */
+
+/* Studio home — intro */
+.studio-home__intro.page-width {
+  padding: 6rem 1.5rem 1rem;
+  max-width: 820px;
+}
+
+.studio-home__intro h1,
+.studio-home__intro .h0 {
+  font-weight: 100;
+  margin: 0 0 1.25rem;
+  letter-spacing: 0.02em;
+}
+
+.studio-home__intro p {
+  font-size: clamp(1.05rem, 1.2vw, 1.2rem);
+  line-height: 1.7;
+  color: rgba(var(--color-foreground), 0.85);
+}
+
+/* Studio home — featured sections */
+.studio-home__features {
+  padding-bottom: 5rem;
+}
+
+.studio-featured-section {
+  margin: 0 0 4rem;
+}
+
+.studio-featured-section:last-child {
+  margin-bottom: 0;
+}
+
+.studio-featured-section__title {
+  font-family: var(--font-heading-family);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 1rem;
+  color: rgba(var(--color-foreground), 0.6);
+  margin: 0 0 2rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.15);
+}
+
+@media screen and (max-width: 749px) {
+  .studio-home__intro.page-width {
+    padding: 4rem 1.5rem 0.5rem;
+  }
+  .studio-featured-section {
+    margin-bottom: 3rem;
+  }
+}

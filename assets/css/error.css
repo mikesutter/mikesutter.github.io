@@ -1,0 +1,114 @@
+/* ==========================================================================
+   Error (404) page — branded like the splash, minimal.
+   ========================================================================== */
+
+.error-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+  color: #fff;
+}
+
+.error-header {
+  padding: 1.75rem 1.5rem 0;
+  text-align: center;
+}
+.error-header .header__heading-logo {
+  max-width: 200px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
+.error-main {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem 5rem;
+  text-align: center;
+}
+
+.error__inner {
+  width: 100%;
+  max-width: 640px;
+}
+
+.error__code {
+  font-family: var(--font-heading-family);
+  font-weight: 100;
+  font-size: clamp(4rem, 14vw, 9rem);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  margin: 0 0 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.error__title {
+  font-family: var(--font-heading-family);
+  font-weight: 300;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 1.25rem;
+  color: #fff;
+}
+
+.error__copy {
+  font-family: var(--font-body-family);
+  font-weight: 300;
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 auto 2.75rem;
+  max-width: 460px;
+}
+
+.error__links {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.error__link {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+  padding: 0.95rem 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  font-family: var(--font-heading-family);
+  font-weight: 300;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.error__link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  transition: background-color 0.3s ease;
+  z-index: 0;
+}
+.error__link span {
+  position: relative;
+  z-index: 1;
+}
+.error__link--photo { background-image: url('/assets/images/photography-section.jpg'); }
+.error__link--studio { background-image: url('/assets/images/studio-section.jpg'); }
+.error__link:hover { transform: translateY(-2px); }
+.error__link:hover::before { background-color: rgba(0, 0, 0, 0.25); }
+
+@media (max-width: 540px) {
+  .error__links { flex-direction: column; align-items: stretch; }
+  .error__link { width: 100%; }
+}

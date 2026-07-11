@@ -1,0 +1,498 @@
+/* ==========================================================================
+   Splash Page Styles — mikesutter.com v2.0
+   ========================================================================== */
+
+/* ----------------------------------
+   CSS Custom Properties
+   ---------------------------------- */
+:root {
+  --splash-photo-bg: #2c3e2d;
+  --splash-photo-overlay: rgba(20, 30, 20, 0.45);
+  --splash-studio-bg: #1a1a2e;
+  --splash-studio-overlay: rgba(10, 10, 30, 0.50);
+  --splash-divider-color: rgba(255, 255, 255, 0.25);
+  --splash-text-color: #ffffff;
+  --splash-cta-color: #ffffff;
+  --splash-cta-border: rgba(255, 255, 255, 0.7);
+  --splash-cta-hover-bg: rgba(255, 255, 255, 0.15);
+  --splash-info-bg-photo: #f5f2ed;
+  --splash-info-bg-studio: #edf0f5;
+  --splash-info-text: #333333;
+  --splash-info-accent: #555555;
+  --splash-transition-speed: 0.4s;
+}
+
+/* ----------------------------------
+   Body & Main
+   ---------------------------------- */
+.splash-page {
+  background: #000;
+  overflow-x: hidden;
+}
+
+.splash-page .header {
+  display: flex;
+  justify-content: center;
+}
+
+.splash-page .header__heading-logo-wrapper .header__heading-logo {
+  max-width: 200px;
+}
+
+.splash-main {
+  display: block;
+  position: relative;
+}
+
+/* ----------------------------------
+   Hero Container — Desktop: side-by-side, Mobile: stacked
+   ---------------------------------- */
+.splash-hero {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: calc(80vh - var(--header-height, 80px));
+  min-height: 600px;
+  position: relative;
+  overflow: hidden;
+  transition: height 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.splash-hero--shrunken {
+  height: 73vh;
+  min-height: 420px;
+}
+
+/* ----------------------------------
+   Panels
+   ---------------------------------- */
+.splash-panel {
+  flex: 1 1 50%;
+  min-width: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.splash-panel__bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block !important;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.splash-panel--photo .splash-panel__bg {
+  background-color: var(--splash-photo-bg);
+  background-image: url('/assets/images/photography-section.jpg');
+}
+
+.splash-panel--studio .splash-panel__bg {
+  background-color: var(--splash-studio-bg);
+  background-image: url('/assets/images/studio-section.jpg');
+  background-position: bottom center;
+}
+
+.splash-panel:hover .splash-panel__bg {
+  transform: scale(1.05);
+}
+
+.splash-panel__overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block !important;
+  transition: background-color var(--splash-transition-speed) ease;
+}
+
+.splash-panel--photo .splash-panel__overlay,
+.splash-panel--studio .splash-panel__overlay {
+  background-color: transparent;
+}
+
+.splash-panel:hover .splash-panel__overlay,
+.splash-panel--active .splash-panel__overlay {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* ----------------------------------
+   Panel content — centered flex column
+   (title + optional subheadline + CTA in normal flow;
+    CTA is collapsed at rest and expands on hover/active)
+   ---------------------------------- */
+.splash-panel__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--splash-text-color);
+  padding: 2rem 3rem;
+  height: 100%;
+  width: 100%;
+}
+
+.splash-panel__title {
+  font-family: var(--font-heading-family);
+  font-weight: 100;
+  font-size: clamp(2rem, 4.5vw, 4.5rem);
+  letter-spacing: 0.08em;
+  color: var(--splash-text-color);
+  margin: 0;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.splash-panel__subheadline {
+  font-family: var(--font-body-family);
+  font-weight: 300;
+  font-size: clamp(0.9rem, 1.2vw, 1.15rem);
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  max-width: 340px;
+  margin: 0.75rem 0 0;
+  white-space: normal;
+}
+
+/* ----------------------------------
+   CTA Button — in flow, expands from collapsed
+   (removed fragile absolute top: calc() offsets)
+   ---------------------------------- */
+.splash-panel__cta {
+  display: inline-block;
+  border: 1px solid var(--splash-cta-border);
+  color: var(--splash-cta-color);
+  font-family: var(--font-heading-family);
+  font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background-color: transparent;
+  white-space: nowrap;
+  /* collapsed (rest) */
+  max-height: 0;
+  margin-top: 0;
+  padding: 0 2.5rem;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition:
+    opacity var(--splash-transition-speed) ease,
+    transform var(--splash-transition-speed) ease,
+    max-height var(--splash-transition-speed) ease,
+    margin-top var(--splash-transition-speed) ease,
+    padding var(--splash-transition-speed) ease,
+    background-color var(--splash-transition-speed) ease;
+}
+
+/* Expanded (desktop hover/focus, or mobile active) */
+.splash-panel:hover .splash-panel__cta,
+.splash-panel:focus-within .splash-panel__cta,
+.splash-panel--active .splash-panel__cta {
+  max-height: 5rem;
+  margin-top: 1.5rem;
+  padding: 0.8rem 2.5rem;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.splash-panel__cta:hover {
+  background-color: var(--splash-cta-hover-bg);
+}
+
+/* ----------------------------------
+   Divider
+   ---------------------------------- */
+.splash-divider {
+  width: 1px;
+  background-color: var(--splash-divider-color);
+  align-self: stretch;
+  flex-shrink: 0;
+  z-index: 3;
+  transition: opacity var(--splash-transition-speed) ease;
+}
+
+/* ----------------------------------
+   Info Section (below hero)
+   Desktop: two sections stacked in one grid cell, cross-fade on hover.
+   Mobile:  JS relocates each section to sit right after its panel;
+            they expand/collapse in flow (see mobile media query).
+   ---------------------------------- */
+.splash-info-container {
+  display: grid;
+  grid-template-areas: "stack";
+  overflow: hidden;
+}
+
+.splash-info-container > * {
+  grid-area: stack;
+}
+
+.splash-info {
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s ease;
+}
+
+.splash-info--visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.splash-info--photography {
+  background-color: var(--splash-info-bg-photo);
+}
+
+.splash-info--studio {
+  background-color: var(--splash-info-bg-studio);
+}
+
+.splash-page .splash-info__inner {
+  padding: 5rem 1.5rem 6rem;
+  margin: 1.5rem auto;
+}
+
+.splash-info__headline {
+  font-family: var(--font-heading-family);
+  font-weight: 100;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  color: var(--splash-info-text);
+  margin: 0 0 0.4rem;
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+}
+
+.splash-info__subheadline {
+  font-family: var(--font-body-family);
+  font-weight: 300;
+  font-size: clamp(1.05rem, 1.3vw, 1.25rem);
+  letter-spacing: 0.03em;
+  color: var(--splash-info-accent);
+  margin: 0 0 2.5rem;
+  line-height: 1.4;
+}
+
+.splash-info__body {
+  font-family: var(--font-body-family);
+  font-weight: 300;
+  font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+  line-height: 1.75;
+  color: var(--splash-info-text);
+  max-width: 720px;
+}
+
+.splash-info__body p {
+  margin: 0 0 1rem;
+}
+
+.splash-info__body p:last-child {
+  margin-bottom: 0;
+}
+
+.splash-info__cta {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.7rem 2.2rem;
+  border: 1px solid var(--splash-info-accent);
+  color: var(--splash-info-text);
+  font-family: var(--font-heading-family);
+  font-weight: 300;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.splash-info__cta:hover {
+  background-color: var(--splash-info-text);
+  color: #fff;
+}
+
+/* ----------------------------------
+   Desktop >= 990px
+   ---------------------------------- */
+@media screen and (min-width: 990px) {
+  .splash-hero {
+    height: calc(80vh - var(--header-height, 80px));
+    min-height: 650px;
+  }
+
+  .splash-hero--shrunken {
+    height: 73vh;
+    min-height: 400px;
+  }
+
+  .splash-panel__title {
+    font-size: clamp(2.5rem, 5.5vw, 5.5rem);
+  }
+
+  .splash-panel__subheadline {
+    font-size: 1.05rem;
+  }
+
+  .splash-panel__cta {
+    padding: 0 3rem;
+    font-size: 0.95rem;
+  }
+
+  .splash-panel:hover .splash-panel__cta,
+  .splash-panel--active .splash-panel__cta {
+    padding: 0.85rem 3rem;
+  }
+
+  .splash-page .splash-info__inner {
+    padding: 2.5rem 5rem 3.5rem;
+    margin: 2rem auto;
+  }
+
+  .splash-info__headline {
+    font-size: clamp(2.4rem, 3.5vw, 3.4rem);
+    letter-spacing: 0.07em;
+  }
+
+  .splash-info__subheadline {
+    font-size: clamp(1.1rem, 1.3vw, 1.3rem);
+  }
+
+  .splash-info__body {
+    font-size: clamp(1rem, 1.1vw, 1.15rem);
+    line-height: 1.75;
+  }
+}
+
+/* ----------------------------------
+   Mobile < 990px
+   ---------------------------------- */
+@media screen and (max-width: 989px) {
+  .splash-hero {
+    flex-direction: column;
+    height: auto;
+    min-height: auto;
+    overflow: visible;   /* let relocated info sections live in flow */
+  }
+
+  .splash-panel {
+    flex: none;
+    width: 100%;
+    min-height: 65vh;
+    min-height: 65dvh;
+  }
+
+  .splash-divider {
+    display: none;
+  }
+
+  /* CTA revealed by scroll-active JS, not hover */
+  .splash-panel:hover .splash-panel__cta {
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    /* keep collapsed dimensions so hover doesn't pop the box open */
+    max-height: 0;
+    margin-top: 0;
+    padding: 0 2.5rem;
+  }
+  .splash-panel:hover .splash-panel__overlay {
+    background-color: transparent;   /* no darken on tap-hover */
+  }
+
+  .splash-panel__title {
+    font-size: clamp(2.2rem, 8vw, 3.8rem);
+  }
+
+  /* Layered CTA timing: expands first (delay 0), collapses after the info
+     (delay 0.12s). Pairs with the .splash-info delays below for the
+     CTA-then-info expand / info-then-CTA collapse choreography. */
+  .splash-panel__cta {
+    transition-delay: 0.12s;
+  }
+  .splash-panel--active .splash-panel__cta {
+    transition-delay: 0s;
+  }
+
+  /* The desktop cross-fade container is unused on mobile (JS relocates its
+     children next to each panel). Hide it. */
+  .splash-info-container {
+    display: none;
+  }
+
+  /* Relocated info sections expand/collapse in flow.
+     --splash-info-h is measured & set by JS (the section's content height). */
+  .splash-info {
+    visibility: visible;
+    pointer-events: none;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition:
+      opacity 0.4s ease,
+      max-height 0.4s ease;
+    /* Layered choreography: the CTA leads on expand and trails on collapse,
+       while the info lags on expand and leads on collapse. Achieved with
+       transition-delay toggled by .splash-info--visible below. */
+    transition-delay: 0.12s;   /* expand: info comes in slightly after CTA */
+  }
+
+  .splash-info--visible {
+    opacity: 1;
+    pointer-events: auto;
+    max-height: var(--splash-info-h, 60rem);
+    transition-delay: 0s;      /* collapse: info leaves before CTA */
+  }
+
+  .splash-page .splash-info__inner {
+    padding: 3rem 1.5rem 3.5rem;
+    margin: 0 auto;
+  }
+}
+
+/* ----------------------------------
+   Accessibility: hide from AT when not revealed (desktop hover + mobile collapse).
+   JS toggles aria-hidden; this keeps it out of the tab order too.
+   ---------------------------------- */
+.splash-panel__cta[aria-hidden="true"] {
+  /* visibility:hidden removes the link from tab order + AT, while the
+     opacity transition handles the visual fade. */
+  visibility: hidden;
+}
+.splash-info[aria-hidden="true"] .splash-info__cta {
+  visibility: hidden;
+}
+
+/* ----------------------------------
+   Reduced Motion
+   ---------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .splash-panel__bg,
+  .splash-panel__overlay,
+  .splash-panel__cta,
+  .splash-panel__title,
+  .splash-info,
+  .splash-hero {
+    transition: none !important;
+  }
+}
